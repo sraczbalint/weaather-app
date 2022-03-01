@@ -9,7 +9,7 @@ function App() {
 
   const [apiData, setApiData] = useState(JSON.parse(localStorage.getItem('apiData')) || 'Default Value');
   //const [apiHistoryData, setApiHystoryData] = useState([]);
-  //console.log(apiHistoryData);
+  //console.log(apiData);
 
   const [state, setState] = useState({
     lat: apiData.lat,
@@ -36,7 +36,6 @@ function App() {
    }, [apiData]);
 
 
-
  return (
     <div className="App">
       <header className="App-header">
@@ -45,18 +44,18 @@ function App() {
             
       <div className='container'>
         <div className='input-container'>
-          <span className='location'>Choose a city!</span>
+          <h3 className='location'>Local weather in {apiData.timezone}</h3>
           <ComboBox sendCity={(props) => setState(props)}/>
           </div>
       </div>
       <div className='card'>
         
         {apiData.lat ? (
-          <div className='chart-container'>
+          <div className="chart-container">
           <BarChart weatherData ={apiData}/>
           </div>
         ) : (
-          <h1>Loading...</h1>
+          <h1>Please choose a city. </h1>
         )}
     </div>
     </div>

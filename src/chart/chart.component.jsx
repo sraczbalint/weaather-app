@@ -28,10 +28,15 @@ const BarChart = ({weatherData}) => {
           borderColor: 'rgba(0, 99, 255, 0.4)'
         }]
         }}
-        height={400}
+        height={450}
         width={500}
         options={{
           maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+            }
+          },
           scales: {
             yAxes: [{
               id: 'Temp',

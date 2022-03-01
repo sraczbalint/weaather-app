@@ -3,11 +3,11 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
 const cities = [
-  {city:"Berlin",lon: 52.52 , lat: 13.40},
-  {city:"Budapest" ,lon: 47.49, lat: 19.04 },
-  {city:"Praha",lon:50.07,lat:14.43},
-  {city:"London",lon:51.51,lat:0.12},
-  {city:"Milano",lat:9.19,lon:45.46}
+  {city:"Caracas",lon:-61.8926 , lat: 6.9118},
+  {city:"Nairobi",lon:40.4168,lat:3.7038},
+  {city:"Cairo",lon:26.2041,lat:28.0473},
+  {city:"New York",lat:40.7128,lon:-74.0060},
+  {city:"Paris",lat:48.8566,lon:2.3522}
 ];
 
 export default function ComboBox(props) {
