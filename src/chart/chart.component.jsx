@@ -28,10 +28,10 @@ const BarChart = ({weatherData}) => {
           borderColor: 'rgba(0, 99, 255, 0.4)'
         }]
         }}
-        height={450}
-        width={500}
+        height={400}
+        width={400}
         options={{
-          maintainAspectRatio: false,
+          maintainAspectRatio: true,
           plugins: {
             legend: {
               position: 'top',
