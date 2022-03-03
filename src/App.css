@@ -3,12 +3,18 @@
     60deg,
     rgb(94,70,253) 0%,
     rgb(165, 82, 26) 100%
-  );
+  );  
+  height: fit-content;
+}
+
+@media screen and (max-width: 900px) {
+  .App{
+    height:1600px;
+  }
 }
 
 .input-container {
   display: flex;
-  width: 100%;
   flex-direction: column;
   align-items: center;
   padding-top: 20px;
@@ -51,10 +57,12 @@
   height: 100vh;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 450px) {
   .chart-container{
-  width: 90vw;
+  width: 85vw;
 }}
+
+
 
 .weather-today {
   padding-top: 10px;
