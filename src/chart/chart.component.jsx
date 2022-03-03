@@ -1,61 +1,84 @@
-import React from 'react';
-import {Line} from 'react-chartjs-2';
+//import React from 'react';
+import '../App.css';
 
-const BarChart = ({weatherData}) => {
-  //console.log(new Date(weatherData.daily[0].dt*1000));
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
 
-  return (<div>
-      <Line
-      data={{
-        labels: weatherData.daily.filter((dt,idx)=> idx < 5).map((weatherData) => {return new Date(weatherData.dt*1000).toLocaleString("en-us", {weekday: "long"})}),
-        yAxesID: 'Temp',
-        datasets: [{
-            label: 'Temperature [°C]',
-            data: weatherData.daily.map(weatherData => {return weatherData.temp.day}),
-            backgroundColor: [
-                'rgba(255, 205, 0, 0.5)'
-            ],
-            borderColor: [
-              'rgba(255, 205, 0, 0.9)'
-            ],
-            borderWidth: 1
-          },
-        {
-          label: 'Probability of Precipitation [%]',
-          yAxesID: 'POP',
-          data: weatherData.daily.map(weatherData => {return weatherData.pop*100},'%'),
-          backgroundColor: 'rgba(0, 99, 255, 0.2)',
-          borderColor: 'rgba(0, 99, 255, 0.4)'
-        }]
-        }}
-        height={400}
-        width={400}
-        options={{
-          maintainAspectRatio: true,
-          plugins: {
-            legend: {
-              position: 'top',
-            }
-          },
-          scales: {
-            yAxes: [{
-              id: 'Temp',
-              type: 'linear',
-              position: 'left',
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fa9e00',
+  ...theme.typography.body2,
+  padding: theme.spacing(2),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+export default function FullWidthGrid({weatherData}) {
+  return (
+    <Box sx={{ flexGrow: 1 }} className="chart-container">
+        <div className='weather-text-container'>
+        <h2>Today:</h2>
+      </div>
+      <Grid container spacing={2} className="weather-today">
+      {weatherData.daily.filter((dt,idx)=> idx < 1).map((weatherData) => {return (
+          <Grid item xs={12} md={12} sx={{
+            '&. MuiGrid-root': {
+              color: 'black',
             },
-            {
-              id: 'POP',
-              type: 'linear',
-              position: 'right',
-              ticks:{
-                min: 0,
-                max: 1 }
-
-            }]
-          }
-        }}
-      />
-  </div>)
+          }}
+          >
+          <Item>
+            <h1>
+            {new Date(weatherData.dt*1000).toLocaleString("en-us", {weekday: "long"})}
+            </h1>
+            <h2>
+            {new Date(weatherData.dt*1000).toLocaleString("en-us", { year: 'numeric', month: '2-digit', day: '2-digit' })}
+            </h2>
+            <div>
+            <img 
+                alt={weatherData.weather[0].icon}
+                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+              />
+            </div>
+            <div>
+            Probability of of Precipitation: {(weatherData.pop*100).toFixed(1)}%
+            </div>
+            {}
+          </Item>
+        </Grid>
+       ) })}
+       </Grid>
+        <div className='weather-text-container'>
+          <h2>
+            Forecast:
+          </h2>
+        </div>
+      <Grid container spacing={1} className="forecast">
+      {weatherData.daily.filter((dt,idx)=> idx < 6 && idx > 0).map((weatherData) => {return (
+          <Grid item xs={12} md={2.4} >
+          <Item className="forecast-card-container">
+            <h3>
+            {new Date(weatherData.dt*1000).toLocaleString("en-us", {weekday: "long"})}
+            </h3>
+            <div>
+            {new Date(weatherData.dt*1000).toLocaleString("en-us", { year: 'numeric', month: '2-digit', day: '2-digit' })}
+            </div>
+            <div>
+              <img 
+                alt={weatherData.weather[0].icon}
+                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+              />
+            </div>
+            <div>
+              <span>Probability of of Precipitation: {(weatherData.pop*100).toFixed(1)}% </span>
+            </div>
+            {}
+          </Item>
+        </Grid>
+       ) })}
+      </Grid>
+    </Box>
+  );
 };
-
-export default BarChart;

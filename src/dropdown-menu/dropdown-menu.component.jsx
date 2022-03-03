@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, {useState, useEffect} from "react";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -11,27 +11,39 @@ const cities = [
 ];
 
 export default function ComboBox(props) {
+  const [ cityState, setCityState] = useState(JSON.parse(localStorage.getItem('cityState')) || 'Choose a citys')
+  console.log(cityState);
+
+  useEffect(() => {
+    localStorage.setItem('cityState', JSON.stringify(cityState));
+  }, [cityState]);
 
   const handleSubmit = (e,option) => {
-    e.preventDefault();
-       
+    e.preventDefault();  
   
     props.sendCity({
+      city: option.city,
       lon: option.lon,
       lat: option.lat
     });
-    
+     setCityState(option);
   };
 
   return (
       <Autocomplete
+        key={cityState.idx}
         disablePortal
-        id="combo-box-demo"
+        id="combo-box"
         options={cities}
         onChange={handleSubmit}
-        getOptionLabel={(option) => option.city || ""}
+        value={cityState}
+        getOptionLabel={(option) => option.city || ''}
         sx={{ width: 300 }}
-        renderInput={(params) => <TextField {...params} label="City" />}
+        renderInput={(params) => 
+        <TextField 
+        {...params} 
+        label="City"
+        />}
       />
   );
 }
