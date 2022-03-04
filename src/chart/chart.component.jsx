@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fa9e00',
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#74959A',
   ...theme.typography.body2,
   padding: theme.spacing(2),
   textAlign: 'center',

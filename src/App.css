@@ -21,8 +21,8 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  color:beige;
+  background-color: #495371;
+  color:#F1E0AC;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,6 +64,7 @@
 
 .weather-text-container {
   text-align: left;
+  color:#495371;
 }
 
 h2 {
