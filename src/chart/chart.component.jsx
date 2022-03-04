@@ -7,8 +7,10 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 
+
+
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#74959A',
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#98B4AA',
   ...theme.typography.body2,
   padding: theme.spacing(2),
   textAlign: 'center',
@@ -23,12 +25,7 @@ export default function FullWidthGrid({weatherData}) {
       </div>
       <Grid container spacing={2} className="weather-today">
       {weatherData.daily.filter((dt,idx)=> idx < 1).map((weatherData) => {return (
-          <Grid item xs={12} md={12} sx={{
-            '&. MuiGrid-root': {
-              color: 'black',
-            },
-          }}
-          >
+          <Grid item xs={12} md={12} >
           <Item>
             <h1>
             {new Date(weatherData.dt*1000).toLocaleString("en-us", {weekday: "long"})}

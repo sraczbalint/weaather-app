@@ -6,7 +6,7 @@
 html {
     background: linear-gradient(
       60deg,
-      rgb(116,149,154) 10%,
+      rgb(116,149,154) 20%,
       rgb(241, 224, 172) 80%
     ) fixed;
 }
