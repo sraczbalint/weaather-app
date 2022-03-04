@@ -1,17 +1,4 @@
-.App {
-  background: linear-gradient(
-    60deg,
-    rgb(94,70,253) 0%,
-    rgb(165, 82, 26) 100%
-  );  
-  height: fit-content;
-}
 
-@media screen and (max-width: 900px) {
-  .App{
-    height:1600px;
-  }
-}
 
 .input-container {
   display: flex;
